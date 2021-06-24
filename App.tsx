@@ -1,21 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { PhotoList } from "./list";
+
+import { Details } from "./details";
+import { StackParamList } from "./types";
+
+const Stack = createStackNavigator<StackParamList>();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="List">
+        <Stack.Screen name="List" component={PhotoList} />
+        <Stack.Screen
+          name="Detail"
+          component={Details}
+          options={{ headerTitle: () => <MyHeader /> }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function MyHeader() {
+  return (
+    <Text
+      style={{ fontSize: 40, backgroundColor: "grey", fontStyle: "italic" }}
+    >
+      My Own Custom Header
+    </Text>
+  );
+}
