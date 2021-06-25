@@ -10,7 +10,7 @@ import {
   ScrollView,
   Image
 } from "react-native";
-import { Card, List, Searchbar, Title, Paragraph} from "react-native-paper";
+import { Card, List, Searchbar, Title, Paragraph } from "react-native-paper";
 import { Photo } from "./types";
 
 export function PhotoList() {
@@ -94,7 +94,7 @@ export function PhotoList() {
                 <Card style={{ marginVertical: 10 }}>
                   <Card.Title title={photo.title} />
                   <Card.Content>
-                  <Image source={require('{photo.thumbnailUrl}')}/>
+                    <Image source={{ uri: photo.thumbnailUrl }} />
                   </Card.Content>
                 </Card>
               </TouchableOpacity>
